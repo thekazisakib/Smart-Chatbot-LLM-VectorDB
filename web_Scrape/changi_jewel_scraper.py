@@ -3,17 +3,16 @@ from bs4 import BeautifulSoup
 import json
 import os
 
-os.makedirs('data', exist_ok=True)  # Ensure the data directory exists
-
+os.makedirs('data', exist_ok=True) 
 def scrape_website(url, output_file):
     try:
         response = requests.get(url)
-        response.raise_for_status()  # Raise an error for bad responses (4xx or 5xx)
+        response.raise_for_status()
         
         soup = BeautifulSoup(response.text, 'html.parser')
-        content = [p.text.strip() for p in soup.find_all('p') if p.text.strip()]  # Extract text content
+        content = [p.text.strip() for p in soup.find_all('p') if p.text.strip()] 
         
-        if content:  # Only save if there is content
+        if content:  
             with open(os.path.join('data', output_file), 'w', encoding='utf-8') as file:
                 json.dump(content, file, indent=4)
             print(f"Content scraped and saved to {os.path.join('data', output_file)}")
@@ -46,7 +45,6 @@ def merge_json_files(file_paths, output_file):
     print(f"Content merged and saved to {os.path.join('data', output_file)}")
 
 def clean_data(content):
-    # Remove duplicates and strip whitespace
     cleaned_content = list(set(content))  # Remove duplicates
     cleaned_content = [text.strip() for text in cleaned_content if text]  # Strip whitespace and remove empty strings
     return cleaned_content

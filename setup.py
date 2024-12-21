@@ -1,10 +1,10 @@
 from setuptools import find_packages, setup
 
 setup(
-    name = 'Medical Chatbot',
+    name = 'Smart-Chatbot-LLM-VectorDB',
     version= '0.0.0',
-    author= 'Boktiar Ahmed Bappy',
-    author_email= 'entbappy73@gmail.com',
+    author= 'Kazi Sakib',
+    author_email= 'kazisakib125@gmail.com',
     packages= find_packages(),
     install_requires = []
 
